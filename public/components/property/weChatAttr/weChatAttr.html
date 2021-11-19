@@ -1,0 +1,51 @@
+<div class="animated fadeInRight ecommerce">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+
+                <div class="ibox-title">
+                    <h5>公众号信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <tbody>
+                            <tr>
+                                <td class="text-center">服务器地址(URL)</td>
+                                <td class="text-center">{{wechatAttrInfo.wechatServerUrl}}</td>
+                                <td class="text-right">
+                                    
+                                </td>
+                            </tr>
+                            <tr v-for="(wechatAttr, key) in wechatAttrInfo.attrs">
+                                <td class="text-center">{{wechatAttr.specCdName}}</td>
+                                <td class="text-center">{{wechatAttr.value}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditWechatAttrModel(wechatAttr)">修改
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <vc:create path="common/editStoreInfo"></vc:create>
+    <vc:create path="common/editStoreAttr"></vc:create>
+
+    <vc:create path="property/editWechatAttr"></vc:create>
+</div>

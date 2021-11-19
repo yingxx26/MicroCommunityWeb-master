@@ -1,0 +1,68 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>我的小程序</h5>
+                    <div class="ibox-tools" style="top:10px;" v-if="smallWeChatManageInfo.smallWeChats.length == 0 ">
+                        <button type="button" class="btn btn-primary btn-sm"
+                            v-on:click="_openAddSmallWeChatModal(1000)">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            添加小程序
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                            <tr>
+                                <th class="text-center">名称</th>
+                                <th class="text-center">APPID</th>
+                                <th class="text-center">应用密钥</th>
+                                <th class="text-center">支付密码</th>
+                                <th class="text-center">商户ID</th>
+                                <th class="text-center">描述</th>
+                                <th class="text-center">操作</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="smallWeChat in smallWeChatManageInfo.smallWeChats">
+                                <td class="text-center">{{smallWeChat.name}}</td>
+                                <td class="text-center">{{smallWeChat.appId}}</td>
+                                <td class="text-center">********</td>
+                                <td class="text-center">**********</td>
+                                <td class="text-center">{{smallWeChat.mchId}}</td>
+                                <td class="text-center">{{smallWeChat.remarks}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button class="btn-white btn btn-xs"
+                                            v-on:click="_openEditSmallWeChatModel(smallWeChat)">修改
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <vc:create path="property/addSmallWeChat" callBackListener="" callBackFunction=""></vc:create>
+    <vc:create path="property/editSmallWeChat"></vc:create>
+    <vc:create path="property/deleteSmallWeChat"></vc:create>
+
+
+</div>

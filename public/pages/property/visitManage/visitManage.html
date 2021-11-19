@@ -1,0 +1,110 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>访客信息</h5>
+                    <div class="ibox-tools" style="top:10px;">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="_openAddVisitModal()">
+                            <i class="fa fa-plus"></i>登记
+                        </button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写来访人姓名" class="form-control"
+                                       v-model="appManageInfo.conditions.vName">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择来访开始时间"
+                                       v-model="appManageInfo.conditions.visitStartTime"
+                                       class=" form-control visitStartTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group input-group">
+                                <input type="text" placeholder="请选择来访结束时间"
+                                       v-model="appManageInfo.conditions.visitEndTime"
+                                       class=" form-control visitEndTime">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_queryAppManageInfoMethod()">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    v-on:click="_resetAppManageInfoMethod()">
+                                <i class="fa fa-repeat"></i> 重置
+                            </button>
+                            <div class="ibox-tools" style="top:0px;">
+                                <button type="button" class="btn btn-link btn-sm" style="margin-right:10px;"
+                                        v-on:click="_moreCondition()">
+                                    {{appManageInfo.moreCondition == true?'隐藏':'更多'}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-show="appManageInfo.moreCondition == true">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="请填写访客联系方式" class="form-control"
+                                       v-model="appManageInfo.conditions.phoneNumber">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                        <thead>
+                        <tr>
+                            <th class="text-center">访客ID</th>
+                            <th class="text-center">访客姓名</th>
+                            <th class="text-center">访客联系方式</th>
+                            <th class="text-center">访客性别</th>
+                            <th class="text-center">来访事由</th>
+                            <th class="text-center">来访时间</th>
+                            <th class="text-center">离开时间</th>
+                            <!--<th class="text-right">操作</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="visit in appManageInfo.visits">
+                            <td class="text-center">{{visit.vId}}</td>
+                            <td class="text-center">{{visit.vName}}</td>
+                            <td class="text-center">{{visit.phoneNumber}}</td>
+                            <td class="text-center">{{visit.visitGender=='0'?'男':'女'}}</td>
+                            <td class="text-center">{{visit.visitCase}}</td>
+                            <td class="text-center">{{visit.visitTime}}</td>
+                            <td class="text-center">{{visit.departureTime}}</td>
+                            <!--<td>
+                                &lt;!&ndash;<div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openEditVisitModel(visit)">修改</button>
+                                </div>&ndash;&gt;
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs" v-on:click="_openDeleteAppModel(visit)">删除
+                                    </button>
+                                </div>
+                            </td>-->
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <ul class="pagination float-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 分页 -->
+                    <vc:create path="frame/pagination"></vc:create>
+                </div>
+            </div>
+        </div>
+    </div>
+    <vc:create path="property/editVisit"></vc:create>
+</div>
